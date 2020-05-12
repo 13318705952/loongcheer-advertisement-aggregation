@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongcheer.advertisement.admanagement.mapper.PlatforApplicationMapper">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.loongcheer.advertisement.api.entity.PlatforApplication">
+        <id column="platfor_app_id" property="platforAppId" />
+        <result column="application_name" property="applicationName" />
+        <result column="platfor_type" property="platforType" />
+        <result column="package_name" property="packageName" />
+        <result column="category" property="category" />
+        <result column="sub_category" property="subCategory" />
+        <result column="appKey" property="appKey" />
+        <result column="appId" property="appId" />
+        <result column="app_shop" property="appShop" />
+        <result column="app_shop_url" property="appShopUrl" />
+        <result column="screen_orientation" property="screenOrientation" />
+        <result column="icon_url" property="iconUrl" />
+        <result column="is_enable" property="isEnable" />
+        <result column="creator" property="creator" />
+        <result column="modifier" property="modifier" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remake" property="remake" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        platfor_app_id, application_name, platfor_type, package_name, category, sub_category, appKey, appId, app_shop, app_shop_url, screen_orientation, icon_url, is_enable, creator, modifier, create_time, update_time, remake
+    </sql>
+
+</mapper>

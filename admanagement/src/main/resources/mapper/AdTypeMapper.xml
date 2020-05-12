@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongcheer.advertisement.admanagement.mapper.AdTypeMapper">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.loongcheer.advertisement.api.entity.AdType">
+        <id column="adv_type_id" property="advTypeId" />
+        <result column="adv_type" property="advType" />
+        <result column="adv_type_name" property="advTypeName" />
+        <result column="adv_plaffor_id" property="advPlafforId" />
+        <result column="is_enable" property="isEnable" />
+        <result column="creator" property="creator" />
+        <result column="modifier" property="modifier" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remake" property="remake" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        adv_type_id, adv_type, adv_type_name, adv_plaffor_id, is_enable, creator, modifier, create_time, update_time, remake
+    </sql>
+
+</mapper>

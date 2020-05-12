@@ -1,0 +1,94 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: admanagement-provider-server
+
+  #数据库信息配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    url: jdbc:mysql://localhost:3306/loongcheer?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+    #druid连接池配置
+    #初始化时建立物理连接的个数
+    initialSize: 5
+    #最小连接池数量
+    minIdle: 5
+    #最大连接池数量
+    maxActive: 20
+    #获取连接时最大等待时间，单位毫秒
+    maxWait: 60000
+    #有两个含义：
+    #1) Destroy线程会检测连接的间隔时间2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters,去掉监控界面sql无法统计，‘wall’用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    userGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+eureka:
+  client:
+    service-url:
+      #defaultZone 这个是不会提示的，此处需要自己写
+      #实际上属性应该是service-url,这个属性是个map（key-value）格式；当key是defaultZone的时候才能被解析；所以这里没有提示，
+      #但是自己还需要写一个defaultZone；
+      defaultZone: http://localhost:5060/eureka
+    #表示是否将自己注册进EurekaServer,默认为true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+  instance:
+    instance-id: admanagement7002
+    prefer-ip-address: true #访问路径可以显示IP地址
+    #Eureka客户端向服务端发送心跳的时间间隔，单位为秒（默认是30秒）
+    #lease-renewal-interval-in-seconds: 1
+    #Eurekaf服务端在收到最后一次心跳后等待时间上限，单位为秒（默认是90秒），超时将剔除服务
+    #lease-expiration-duration-in-seconds: 2
+
+mybatis-plus:
+  # 在classpath前添加星号可以使项目热加载成功
+  mapper-locations: classpath*:mapper/*.xml
+  #mapper-locations: classpath:/**.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.loongcheer.advertisement.api.entity;com.loongcheer.advertisement.api.query;com.loongcheer.advertisement.api.vo
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 5
+    #机器 ID 部分(影响雪花ID)
+    workerId: 1
+    #数据标识 ID 部分(影响雪花ID)(workerId 和 datacenterId 一起配置才能重新初始化 Sequence)
+    datacenterId: 18
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置（下面3个配置）
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

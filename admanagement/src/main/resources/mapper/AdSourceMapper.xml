@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongcheer.advertisement.admanagement.mapper.AdSourceMapper">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.loongcheer.advertisement.api.entity.AdSource">
+        <id column="adv_source_id" property="advSourceId" />
+        <result column="app_id" property="appId" />
+        <result column="flow_group_id" property="flowGroupId" />
+        <result column="source_name" property="sourceName" />
+        <result column="is_open" property="isOpen" />
+        <result column="is_enable" property="isEnable" />
+        <result column="platfor_name" property="platforName" />
+        <result column="placement_id" property="placementId" />
+        <result column="game_id" property="gameId" />
+        <result column="ecmp" property="ecmp" />
+        <result column="creator" property="creator" />
+        <result column="modifier" property="modifier" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remake" property="remake" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        adv_source_id, app_id, flow_group_id, source_name, is_open, is_enable, platfor_name, placement_id, game_id, ecmp, creator, modifier, create_time, update_time, remake
+    </sql>
+
+</mapper>

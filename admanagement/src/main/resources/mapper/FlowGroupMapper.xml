@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongcheer.advertisement.admanagement.mapper.FlowGroupMapper">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.loongcheer.advertisement.api.entity.FlowGroup">
+        <id column="flow_group_id" property="flowGroupId" />
+        <result column="rule_id" property="ruleId" />
+        <result column="group_priority" property="groupPriority" />
+        <result column="requests" property="requests" />
+        <result column="default_group" property="defaultGroup" />
+        <result column="is_enable" property="isEnable" />
+        <result column="creator" property="creator" />
+        <result column="modifier" property="modifier" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="remake" property="remake" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        flow_group_id, rule_id, group_priority, requests, default_group, is_enable, creator, modifier, create_time, update_time, remake
+    </sql>
+
+</mapper>
