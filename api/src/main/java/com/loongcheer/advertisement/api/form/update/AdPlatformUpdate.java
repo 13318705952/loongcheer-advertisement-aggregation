@@ -11,15 +11,15 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @ApiModel("广告平台更新表单")
-public class AdPlatforUpdate {
+public class AdPlatformUpdate {
 
     @NotBlank(message = "广告平台id不能为空")
     @ApiModelProperty("广告平台id")
-    private String advPlatforId;
+    private String advPlatformId;
 
     @ApiModelProperty("广告平台名称")
-    private String advPlatforName;
+    private String advPlatformName;
 
     @ApiModelProperty("平台应用id")
-    private String platforAppId;
+    private String platformAppId;
 }

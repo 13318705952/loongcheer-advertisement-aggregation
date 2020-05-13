@@ -1,7 +1,7 @@
 package com.loongcheer.advertisement.admanagement.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.loongcheer.advertisement.api.entity.PlatforApplication;
+import com.loongcheer.advertisement.api.entity.PlatformApplication;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.loongcheer.advertisement.api.entity.PlatforApplication;
  * @author caiww
  * @since 2020-05-08
  */
-public interface PlatforApplicationMapper extends BaseMapper<PlatforApplication> {
+public interface PlatformApplicationMapper extends BaseMapper<PlatformApplication> {
 
 }

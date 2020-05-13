@@ -24,5 +24,5 @@ public class AdTypeSave {
     private String advPlafforId;
 
     @ApiModelProperty("备注")
-    private String remake;
+    private String remark;
 }

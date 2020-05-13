@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class AdPlatforQuery extends PageCommon implements Serializable{
+public class AdPlatformQuery extends PageCommon implements Serializable{
     private static final long serialVersionUID = 1L;
 
 }

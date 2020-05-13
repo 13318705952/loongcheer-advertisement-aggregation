@@ -23,16 +23,16 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_platfor_application")
-public class PlatforApplication extends Model<PlatforApplication> {
+@TableName("t_platform_application")
+public class PlatformApplication extends Model<PlatformApplication> {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 平台应用id
      */
-    @TableId(value = "platfor_app_id", type = IdType.ID_WORKER_STR)
-    private String platforAppId;
+    @TableId(value = "platform_app_id", type = IdType.ID_WORKER_STR)
+    private String platformAppId;
 
     /**
      * 应用名称
@@ -43,8 +43,8 @@ public class PlatforApplication extends Model<PlatforApplication> {
     /**
      * 平台类型
      */
-    @TableField("platfor_type")
-    private Integer platforType;
+    @TableField("platform_type")
+    private Integer platformType;
 
     /**
      * 包名称
@@ -125,12 +125,12 @@ public class PlatforApplication extends Model<PlatforApplication> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    private String remark;
 
 
     @Override
     protected Serializable pkVal() {
-        return this.platforAppId;
+        return this.platformAppId;
     }
 
 }

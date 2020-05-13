@@ -24,7 +24,7 @@ public class AdTypeUpdate {
     private String advPlafforId;
 
     @ApiModelProperty("备注")
-    private String remake;
+    private String remark;
 
     @ApiModelProperty("是否启用")
     private Integer isEnable;

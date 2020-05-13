@@ -23,28 +23,28 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("t_ad_platfor")
-public class AdPlatfor extends Model<AdPlatfor> {
+@TableName("t_ad_platform")
+public class AdPlatform extends Model<AdPlatform> {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 广告平台id
      */
-    @TableId(value = "adv_platfor_id", type = IdType.ID_WORKER_STR)
-    private String advPlatforId;
+    @TableId(value = "adv_platform_id", type = IdType.ID_WORKER_STR)
+    private String advPlatformId;
 
     /**
      * 平台应用id
      */
-    @TableField("platfor_app_id")
-    private String platforAppId;
+    @TableField("platform_app_id")
+    private String platformAppId;
 
     /**
      * 广告平台名称
      */
-    @TableField("adv_platfor_name")
-    private String advPlatforName;
+    @TableField("adv_platform_name")
+    private String advPlatformName;
 
     /**
      * 是否启用
@@ -83,12 +83,12 @@ public class AdPlatfor extends Model<AdPlatfor> {
     /**
      * 备注
      */
-    private String remake;
+    private String remark;
 
 
     @Override
     protected Serializable pkVal() {
-        return this.advPlatforId;
+        return this.advPlatformId;
     }
 
 }

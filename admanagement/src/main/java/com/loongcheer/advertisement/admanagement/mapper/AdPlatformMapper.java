@@ -2,11 +2,10 @@ package com.loongcheer.advertisement.admanagement.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.loongcheer.advertisement.api.entity.AdPlatfor;
-import com.loongcheer.advertisement.api.query.AdPlatforQuery;
-import com.loongcheer.advertisement.api.vo.AdPlatforVo;
+import com.loongcheer.advertisement.api.entity.AdPlatform;
+import com.loongcheer.advertisement.api.query.AdPlatformQuery;
+import com.loongcheer.advertisement.api.vo.AdPlatformVo;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 
 import java.util.List;
@@ -19,14 +18,14 @@ import java.util.List;
  * @author caiww
  * @since 2020-05-08
  */
-public interface AdPlatforMapper extends BaseMapper<AdPlatfor> {
+public interface AdPlatformMapper extends BaseMapper<AdPlatform> {
     /**
      * 分页查询平台应用信息
      * @param page
      * @param adPlatforQuery
      * @return
      */
-    List<AdPlatforVo> queryAdPlatfor(Page<AdPlatforVo> page, @Param("adPlatfor") AdPlatforQuery adPlatforQuery);
+    List<AdPlatformVo> queryAdPlatform(Page<AdPlatformVo> page, @Param("adPlatform") AdPlatformQuery adPlatforQuery);
 
 
 }
