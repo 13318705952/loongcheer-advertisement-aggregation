@@ -57,6 +57,12 @@ public class FlowGroup extends Model<FlowGroup> {
     @TableField("default_group")
     private Integer defaultGroup;
 
+    /**
+     * 流量分组名称
+     */
+    @TableField("flow_group_name")
+    private String flowGroupName;
+
     @TableField("is_enable")
     private Integer isEnable;
 

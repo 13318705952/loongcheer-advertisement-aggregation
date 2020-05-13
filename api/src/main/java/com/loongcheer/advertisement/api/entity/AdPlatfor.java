@@ -49,6 +49,12 @@ public class AdPlatfor extends Model<AdPlatfor> {
     /**
      * 是否启用
      */
+    @TableField("is_open")
+    private Integer isOpen;
+
+    /**
+     * 是否启用
+     */
     @TableField("is_enable")
     private Integer isEnable;
 

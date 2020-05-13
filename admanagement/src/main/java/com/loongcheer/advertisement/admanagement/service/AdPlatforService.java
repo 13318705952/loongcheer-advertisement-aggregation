@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.loongcheer.advertisement.api.entity.AdPlatfor;
 import com.loongcheer.advertisement.api.entity.ResultCommon;
+import com.loongcheer.advertisement.api.form.save.AdPlatforSave;
+import com.loongcheer.advertisement.api.form.update.AdPlatforUpdate;
 import com.loongcheer.advertisement.api.query.AdPlatforQuery;
 import com.loongcheer.advertisement.api.vo.AdPlatforVo;
 
@@ -27,23 +29,23 @@ public interface AdPlatforService extends IService<AdPlatfor> {
 
     /**
      * 新增广告平台信息
-     * @param adPlatfor
+     * @param adPlatforSave
      * @return
      */
-    ResultCommon addAdPlatfor(AdPlatfor adPlatfor);
+    ResultCommon addAdPlatfor(AdPlatforSave adPlatforSave);
 
     /**
      * 更新广告平台信息
-     * @param adPlatfor
+     * @param adPlatforUpdate
      * @return
      */
-    ResultCommon updateAdPlatfor(AdPlatfor adPlatfor);
+    ResultCommon updateAdPlatfor(AdPlatforUpdate adPlatforUpdate);
 
     /**
      * 删除广告平台信息
-     * @param adPlatfor
+     * @param advPlatforId
      * @return
      */
-    ResultCommon deleteAdPlatfor(AdPlatfor adPlatfor);
+    ResultCommon deleteAdPlatfor(String advPlatforId);
 
 }
