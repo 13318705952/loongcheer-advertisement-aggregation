@@ -61,11 +61,13 @@ public class AdPlatform extends Model<AdPlatform> {
     /**
      * 创建人
      */
+    @TableField("creator")
     private String creator;
 
     /**
      * 修改人
      */
+    @TableField("modifier")
     private String modifier;
 
     /**
@@ -83,8 +85,20 @@ public class AdPlatform extends Model<AdPlatform> {
     /**
      * 备注
      */
+    @TableField("remark")
     private String remark;
 
+    /**
+     * 是否开通报表api
+     */
+    @TableField("是否开通报表api")
+    private Integer isReportApi;
+
+    @TableField("广告平台编码")
+    private Integer advPlatformCode;
+
+    @TableField("扩展属性")
+    private String extendParams;
 
     @Override
     protected Serializable pkVal() {

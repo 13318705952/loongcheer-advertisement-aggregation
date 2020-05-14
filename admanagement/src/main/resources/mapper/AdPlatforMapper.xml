@@ -24,7 +24,10 @@
     </sql>
 
     <select id="queryAdPlatfor" resultMap="BaseResultMap">
-        select * from t_ad_platfor order by adv_platfor_id
+        select * from t_ad_platfor where creator = #{userName}
+        <if test="adPlatform.startDate != null and adPlatform.startDate !='' and adPlatform.endDate != null and adPlatform.endDate !=''" >
+            and
+        </if>
     </select>
 
 </mapper>

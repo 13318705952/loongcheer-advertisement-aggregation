@@ -25,7 +25,12 @@ public interface AdPlatformMapper extends BaseMapper<AdPlatform> {
      * @param adPlatforQuery
      * @return
      */
-    List<AdPlatformVo> queryAdPlatform(Page<AdPlatformVo> page, @Param("adPlatform") AdPlatformQuery adPlatforQuery);
+    List<AdPlatformVo> queryAdPlatformByPage(Page<AdPlatformVo> page, @Param("adPlatform") AdPlatformQuery adPlatforQuery);
 
-
+    /**
+     * 查询广告平台信息
+     * @param adPlatformQuery
+     * @return
+     */
+    List<AdPlatformVo> queryAdPlatform(@Param("adPlatform") AdPlatformQuery adPlatformQuery,@Param("userName") String userName);
 }

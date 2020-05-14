@@ -4,6 +4,7 @@ package com.loongcheer.advertisement.admanagement.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.loongcheer.advertisement.admanagement.service.AdPlatformService;
 import com.loongcheer.advertisement.api.entity.ResultCommon;
+import com.loongcheer.advertisement.api.entity.User;
 import com.loongcheer.advertisement.api.form.save.AdPlatformSave;
 import com.loongcheer.advertisement.api.form.update.AdPlatformUpdate;
 import com.loongcheer.advertisement.api.query.AdPlatformQuery;
@@ -40,10 +41,10 @@ public class AdPlatformController {
      */
     @ApiOperation("查询广告平台信息")
     @GetMapping("/queryAdPlatform")
-    public ResultCommon queryAdPlatform(AdPlatformQuery adPlatformQuery){
+    public ResultCommon queryAdPlatform(@Validated AdPlatformQuery adPlatformQuery){
         ResultCommon result = new ResultCommon();
-        IPage<AdPlatformVo> list =  adPlatformService.queryAdPlatform(adPlatformQuery);
-        return ResultCommon.ok(list);
+        //IPage<AdPlatformVo> list =  adPlatformService.queryAdPlatform(adPlatformQuery);
+        return ResultCommon.ok(adPlatformService.queryAdPlatform(adPlatformQuery,new User()));
     }
 
     /**
@@ -54,7 +55,7 @@ public class AdPlatformController {
     @ApiOperation("新增广告平台信息")
     @PostMapping("/addAdPlatform")
     public ResultCommon addAdPlatform(@Validated AdPlatformSave adPlatformSave){
-        return adPlatformService.addAdPlatform(adPlatformSave);
+        return adPlatformService.addAdPlatform(adPlatformSave,new User());
     }
 
     /**
@@ -65,7 +66,7 @@ public class AdPlatformController {
     @ApiOperation("更新广告平台信息")
     @PostMapping("/updateAdPlatform")
     public ResultCommon updateAdPlatform(@Validated AdPlatformUpdate adPlatformUpdate){
-        return adPlatformService.updateAdPlatform(adPlatformUpdate);
+        return adPlatformService.updateAdPlatform(adPlatformUpdate,new User());
     }
 
     /**

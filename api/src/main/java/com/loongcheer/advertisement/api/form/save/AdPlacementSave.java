@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel("广告位新增表单")
@@ -26,6 +27,10 @@ public class AdPlacementSave {
     @ApiModelProperty("广告类型id")
     private String advTypeId;
 
+    @NotNull(message = "是否启用不可用")
+    @ApiModelProperty("是否启用")
+    private Integer isEnable;
+
     @ApiModelProperty("备注")
-    private String remake;
+    private String remark;
 }

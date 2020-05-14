@@ -43,23 +43,28 @@ public class Rule extends Model<Rule> {
     /**
      * 维度
      */
+    @TableField("dimension")
     private Integer dimension;
 
     /**
      * 条件
      */
+    @TableField("condition")
     private Integer condition;
 
     /**
      * 包含
      */
+    @TableField("contain")
     private String contain;
 
     @TableField("is_enable")
     private Integer isEnable;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -68,7 +73,8 @@ public class Rule extends Model<Rule> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

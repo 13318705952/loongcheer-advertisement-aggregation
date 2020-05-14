@@ -60,8 +60,10 @@ public class AdPlacement extends Model<AdPlacement> {
     @TableField("adv_type_id")
     private String advTypeId;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -70,7 +72,8 @@ public class AdPlacement extends Model<AdPlacement> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

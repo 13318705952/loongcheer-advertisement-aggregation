@@ -49,8 +49,8 @@ public class AdType extends Model<AdType> {
     /**
      * 广告平台id
      */
-    @TableField("adv_plaffor_id")
-    private String advPlafforId;
+    @TableField("adv_platform_id")
+    private String advPlatformId;
 
     /**
      * 是否启用
@@ -58,8 +58,10 @@ public class AdType extends Model<AdType> {
     @TableField("is_enable")
     private Integer isEnable;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -68,7 +70,8 @@ public class AdType extends Model<AdType> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

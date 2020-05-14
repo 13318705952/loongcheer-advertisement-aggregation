@@ -73,8 +73,10 @@ public class LookupValue extends Model<LookupValue> {
     @TableField("is_enable")
     private Integer isEnable;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -83,7 +85,8 @@ public class LookupValue extends Model<LookupValue> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

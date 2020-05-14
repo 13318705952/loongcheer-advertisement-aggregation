@@ -8,6 +8,7 @@ import com.loongcheer.advertisement.admanagement.mapper.AdPlatformMapper;
 import com.loongcheer.advertisement.admanagement.service.AdPlatformService;
 import com.loongcheer.advertisement.api.entity.AdPlatform;
 import com.loongcheer.advertisement.api.entity.ResultCommon;
+import com.loongcheer.advertisement.api.entity.User;
 import com.loongcheer.advertisement.api.form.save.AdPlatformSave;
 import com.loongcheer.advertisement.api.form.update.AdPlatformUpdate;
 import com.loongcheer.advertisement.api.query.AdPlatformQuery;
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -30,18 +32,17 @@ import java.util.Date;
 @Service
 public class AdPlatformServiceImpl extends ServiceImpl<AdPlatformMapper, AdPlatform> implements AdPlatformService {
 
-    @Resource
-    private AdPlatformMapper adPlatformMapper;
     /**
      * 分页查询广告平台信息
      * @param adPlatformQuery
      * @return
      */
     @Override
-    public IPage<AdPlatformVo> queryAdPlatform(AdPlatformQuery adPlatformQuery) {
-        Page<AdPlatformVo> page = new Page<>(adPlatformQuery.getPage(),adPlatformQuery.getPageSize());
-        page.setRecords(adPlatformMapper.queryAdPlatform(page,adPlatformQuery));
-        return page;
+    public List<AdPlatformVo> queryAdPlatform(AdPlatformQuery adPlatformQuery,User user) {
+//        Page<AdPlatformVo> page = new Page<>(adPlatformQuery.getPage(),adPlatformQuery.getPageSize());
+//        page.setRecords(adPlatformMapper.queryAdPlatform(page,adPlatformQuery));
+
+        return baseMapper.queryAdPlatform(adPlatformQuery,user.getUserName());
     }
 
     /**
@@ -51,25 +52,29 @@ public class AdPlatformServiceImpl extends ServiceImpl<AdPlatformMapper, AdPlatf
      */
     @Override
     @Transactional
-    public ResultCommon addAdPlatform(AdPlatformSave adPlatformSave) {
-        //单单只新增广告平台，不添加应用
-
-        if(StringUtils.isBlank(adPlatformSave.getPlatformAppId())){
-            int count = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("adv_platform_name", adPlatformSave.getAdvPlatformName()));
-            if(count>0){
-                return ResultCommon.error("广告名称已经被使用，请修改广告名称");
-            }
-        }else{
-            //新增了广告平台和应用
-            int count2 = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("adv_platform_name",adPlatformSave.getAdvPlatformName()).eq("platform_app_id",adPlatformSave.getPlatformAppId()));
-            if(count2>0){
-                return ResultCommon.error("该平台下的应用已经被添加过，请重新选择");
-            }
-        }
+    public ResultCommon addAdPlatform(AdPlatformSave adPlatformSave, User user) {
         AdPlatform adPlatform = new AdPlatform();
-        adPlatform.setAdvPlatformName(adPlatformSave.getAdvPlatformName());
-        adPlatform.setPlatformAppId(adPlatformSave.getPlatformAppId());
-        baseMapper.insert(adPlatform);
+        //如果未开通报表API，则直接把扩展属性的字符串加入
+        if(adPlatformSave.getIsReportApi()==0){
+            adPlatform.setExtendParams(adPlatformSave.getExtendParams());
+            adPlatform.setCreator(user.getUserName());
+            adPlatform.setAdvPlatformCode(adPlatformSave.getAdvPlatformCode());
+            adPlatform.setAdvPlatformName(adPlatformSave.getAdvPlatformName());
+            adPlatform.setIsReportApi(adPlatformSave.getIsReportApi());
+            //如果要添加平台应用的时候
+            if(StringUtils.isNotBlank(adPlatformSave.getPlatformAppId())){
+                //查询该用户下，该平台的平台应用有没有重复添加
+                int count = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("adv_platform_code",adPlatformSave.getAdvPlatformCode()).eq("platform_app_id",adPlatformSave.getPlatformAppId()).eq("creator",user.getUserName()));
+                if(count>0){
+                    return ResultCommon.error("该平台下的应用已经被添加过，请重新选择");
+                }
+                adPlatform.setPlatformAppId(adPlatformSave.getPlatformAppId());
+            }
+            baseMapper.insert(adPlatform);
+        }else{
+            //如果要开通报表API，需要把扩张属性对应的值进行对应平台的校验
+        }
+
         return ResultCommon.ok();
     }
 
@@ -80,27 +85,27 @@ public class AdPlatformServiceImpl extends ServiceImpl<AdPlatformMapper, AdPlatf
      */
     @Override
     @Transactional
-    public ResultCommon updateAdPlatform(AdPlatformUpdate adPlatforUpdate) {
-        //如果没有平台应用信息的情况下
-        if(StringUtils.isBlank(adPlatforUpdate.getPlatformAppId())){
-            int count = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("adv_platfor_name",adPlatforUpdate.getAdvPlatformName()).ne("adv_platfor_id",adPlatforUpdate.getAdvPlatformId()));
-            if(count>0){
-                return ResultCommon.error("广告名称已经被使用，请修改广告名称");
+    public ResultCommon updateAdPlatform(AdPlatformUpdate adPlatforUpdate,User user) {
+        AdPlatform adPlatform = new AdPlatform();
+        //如果未开通报表API，则直接把扩展属性的字符串加入
+        if(adPlatforUpdate.getIsReportApi()==0){
+            adPlatform.setModifier(user.getUserName());
+            adPlatform.setAdvPlatformCode(adPlatforUpdate.getAdvPlatformCode());
+            adPlatform.setAdvPlatformName(adPlatforUpdate.getAdvPlatformName());
+            adPlatform.setIsReportApi(adPlatforUpdate.getIsReportApi());
+            adPlatform.setUpdateTime(new Date());
+            if(StringUtils.isNotBlank(adPlatforUpdate.getPlatformAppId())){
+                //查询该用户下，该平台的平台应用有没有重复添加
+                int count = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("adv_platform_code",adPlatforUpdate.getAdvPlatformCode()).eq("platform_app_id",adPlatforUpdate.getPlatformAppId()).eq("creator",user.getUserName()).ne("adv_platform_id",adPlatforUpdate.getAdvPlatformId()));
+                if(count>0){
+                    return ResultCommon.error("该平台下的应用已经被添加过，请重新选择");
+                }
+                adPlatform.setPlatformAppId(adPlatforUpdate.getPlatformAppId());
+                baseMapper.updateById(adPlatform);
             }
         }else{
-            //当添加有平台应用信息的情况下
-            int count2 = baseMapper.selectCount(new QueryWrapper<AdPlatform>().eq("platfor_app_id",adPlatforUpdate.getPlatformAppId()).eq("adv_platfor_name",adPlatforUpdate.getAdvPlatformName()).ne("adv_platfor_id",adPlatforUpdate.getAdvPlatformId()));
-            if(count2>0){
-                return ResultCommon.error("该平台下的应用已经被添加过，请重新选择");
-            }
+            //如果要开通报表API，需要把扩张属性对应的值进行对应平台的校验
         }
-        AdPlatform adPlatform = new AdPlatform();
-        adPlatform.setPlatformAppId(adPlatforUpdate.getPlatformAppId());
-        adPlatform.setAdvPlatformId(adPlatforUpdate.getAdvPlatformId());
-        adPlatform.setAdvPlatformName(adPlatforUpdate.getAdvPlatformName());
-        adPlatform.setUpdateTime(new Date());
-        adPlatform.setModifier("system");
-        baseMapper.updateById(adPlatform);
         return ResultCommon.ok();
     }
 

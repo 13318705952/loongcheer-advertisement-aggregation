@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import java.util.List;
 @Data
 @ApiModel("广告位新增表单列表")
-public class AdPlacementModel {
-    @Valid
+public class AdPlacementSaveModel {
     private List<AdPlacementSave> adPlacementSaveList;
 }

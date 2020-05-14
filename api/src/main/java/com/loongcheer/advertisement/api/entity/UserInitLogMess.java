@@ -34,11 +34,13 @@ public class UserInitLogMess extends Model<UserInitLogMess> {
     /**
      * 地区
      */
+    @TableField("area")
     private String area;
 
     /**
      * 日期时间
      */
+    @TableField("time")
     private Date time;
 
     /**
@@ -56,6 +58,7 @@ public class UserInitLogMess extends Model<UserInitLogMess> {
     /**
      * 应用版本
      */
+    @TableField("version")
     private String version;
 
     /**
@@ -97,8 +100,10 @@ public class UserInitLogMess extends Model<UserInitLogMess> {
     @TableField("is_enable")
     private Integer isEnable;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -107,7 +112,8 @@ public class UserInitLogMess extends Model<UserInitLogMess> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

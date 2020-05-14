@@ -2,19 +2,15 @@ package com.loongcheer.advertisement.admanagement.controller;
 
 
 import com.loongcheer.advertisement.admanagement.service.AdPlacementService;
-import com.loongcheer.advertisement.api.entity.AdPlacement;
 import com.loongcheer.advertisement.api.entity.ResultCommon;
 import com.loongcheer.advertisement.api.form.save.AdPlacementSave;
-import com.loongcheer.advertisement.api.model.AdPlacementModel;
-import com.loongcheer.advertisement.api.util.ValidationUtil;
+import com.loongcheer.advertisement.api.form.update.AdPlacementUpdate;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -29,6 +25,9 @@ import java.util.List;
 @Api(value = "广告位信息管理")
 public class AdPlacementController {
 
+    @Resource
+    private AdPlacementService adPlacementService;
+
     @GetMapping("/queryAdPlacement")
     @ApiOperation("查询广告位信息")
     public ResultCommon queryAdPlacement(){
@@ -37,26 +36,19 @@ public class AdPlacementController {
 
     @PostMapping("/addAdPlacement")
     @ApiOperation("新增广告位信息")
-    public ResultCommon addAdPlacement(@RequestBody AdPlacementModel adPlacementModel){
-        List<AdPlacementSave> adPlacementSaveList = adPlacementModel.getAdPlacementSaveList();
-        for(int i=0;i<adPlacementSaveList.size();i++){
-            ValidationUtil.ValidResult validResult = ValidationUtil.validateBean(adPlacementSaveList.get(i));
-            if(validResult.hasErrors()){
-            }
-        }
-        System.out.println("111");
-        return null;
+    public ResultCommon addAdPlacement(@Validated AdPlacementSave adPlacement){
+        return adPlacementService.addAdPlacement(adPlacement);
     }
 
     @PostMapping("/updateAdPlacement")
     @ApiOperation("更新广告位信息")
-    public ResultCommon updateAdPlacement(){
-        return null;
+    public ResultCommon updateAdPlacement(@Validated AdPlacementUpdate adPlacementUpdate){
+        return adPlacementService.updateAdPlacement(adPlacementUpdate);
     }
 
     @DeleteMapping("/deleteAdPlacement")
     @ApiOperation("删除广告位信息")
-    public ResultCommon deleteAdPlacement(){
-        return null;
+    public ResultCommon deleteAdPlacement(@RequestParam(value="AdPlacementId",required=true) String AdPlacementId){
+        return adPlacementService.deleteAdPlacement(AdPlacementId);
     }
 }

@@ -68,8 +68,8 @@ public class AdSource extends Model<AdSource> {
     /**
      * 平台名称
      */
-    @TableField("platfor_name")
-    private String platforName;
+    @TableField("platform_name")
+    private String platformName;
 
     @TableField("placement_id")
     private String placementId;
@@ -80,10 +80,13 @@ public class AdSource extends Model<AdSource> {
     /**
      * ecmp价值
      */
+    @TableField("ecmp")
     private BigDecimal ecmp;
 
+    @TableField("creator")
     private String creator;
 
+    @TableField("modifier")
     private String modifier;
 
     @TableField("create_time")
@@ -92,7 +95,8 @@ public class AdSource extends Model<AdSource> {
     @TableField("update_time")
     private Date updateTime;
 
-    private String remake;
+    @TableField("remark")
+    private String remark;
 
 
     @Override

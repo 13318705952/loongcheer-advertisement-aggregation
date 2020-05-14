@@ -38,7 +38,7 @@ public class AdTypeServiceImpl extends ServiceImpl<AdTypeMapper, AdType> impleme
         }
         AdType adType = new AdType();
         adType.setAdvType(adTypeSave.getAdvType());
-        adType.setAdvPlafforId(adTypeSave.getAdvPlafforId());
+        adType.setAdvPlatformId(adTypeSave.getAdvPlafforId());
         adType.setAdvTypeName(adTypeSave.getAdvTypeName());
         adType.setRemake(adTypeSave.getRemake());
         baseMapper.insert(adType);
@@ -55,7 +55,7 @@ public class AdTypeServiceImpl extends ServiceImpl<AdTypeMapper, AdType> impleme
         AdType adType = new AdType();
         adType.setAdvTypeName(adTypeUpdate.getAdvTypeName());
         adType.setAdvType(adTypeUpdate.getAdvType());
-        adType.setAdvPlafforId(adTypeUpdate.getAdvPlafforId());
+        adType.setAdvPlatformId(adTypeUpdate.getAdvPlafforId());
         adType.setAdvTypeId(adTypeUpdate.getAdvTypeId());
         adType.setRemake(adTypeUpdate.getRemake());
         adType.setUpdateTime(new Date());

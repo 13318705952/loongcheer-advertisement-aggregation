@@ -19,6 +19,10 @@ import java.util.Set;
  */
 public class ValidationUtil {
     /**
+     * 使用例子
+     * ValidationUtil.ValidResult validResult = ValidationUtil.validateBean(实体类);
+     */
+    /**
      * 开启快速结束模式 failFast (true)
      *
      *
