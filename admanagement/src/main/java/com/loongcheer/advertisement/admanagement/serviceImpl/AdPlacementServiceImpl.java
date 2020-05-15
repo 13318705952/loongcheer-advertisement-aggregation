@@ -45,7 +45,7 @@ public class AdPlacementServiceImpl extends ServiceImpl<AdPlacementMapper, AdPla
         adPlacement.setAdvTypeId(adPlacementSave.getAdvTypeId());
         adPlacement.setAppId(adPlacementSave.getAppId());
         adPlacement.setAppKey(adPlacementSave.getAppKey());
-        adPlacement.setRemake(adPlacementSave.getRemake());
+        adPlacement.setRemark(adPlacementSave.getRemark());
         adPlacement.setIsEnable(adPlacementSave.getIsEnable());
         baseMapper.insert(adPlacement);
         return ResultCommon.ok();
@@ -69,7 +69,7 @@ public class AdPlacementServiceImpl extends ServiceImpl<AdPlacementMapper, AdPla
         adPlacement.setAdvTypeId(adPlacementUpdate.getAdvTypeId());
         adPlacement.setAppId(adPlacementUpdate.getAppId());
         adPlacement.setAppKey(adPlacementUpdate.getAppKey());
-        adPlacement.setRemake(adPlacementUpdate.getRemake());
+        adPlacement.setRemark(adPlacementUpdate.getRemark());
         adPlacement.setIsEnable(adPlacementUpdate.getIsEnable());
         baseMapper.updateById(adPlacement);
         return ResultCommon.ok();

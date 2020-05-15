@@ -34,7 +34,7 @@ public class PlatformApplicationController {
 
     @PostMapping("/addPlatformApplication")
     @ApiOperation("新增平台应用")
-    public ResultCommon addPlatformApplication(AdPlatformAppSave){
+    public ResultCommon addPlatformApplication(AdPlatformAppSave adPlatformAppSave) {
 
         return null;
     }

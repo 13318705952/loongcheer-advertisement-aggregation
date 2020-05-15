@@ -20,6 +20,9 @@ import lombok.experimental.Accessors;
  * @author caiww
  * @since 2020-05-08
  */
+/*
+    MybatisPlus会默认使用实体类的类名到数据库中找对应的表
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
@@ -30,6 +33,9 @@ public class AdPlatform extends Model<AdPlatform> {
 
     /**
      * 广告平台id
+     * @TableId：
+     *  value:指定表中的主键列的列名，如果实体属性名与列名一致，可以省略不指定
+     *  type：指定主键策略
      */
     @TableId(value = "adv_platform_id", type = IdType.ID_WORKER_STR)
     private String advPlatformId;
